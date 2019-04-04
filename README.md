@@ -1,5 +1,21 @@
 # AndroidAnti996Browser
-A browser project for the 996.ICU project on Android platform\.  
+## Project Description
+This is a browser project for the [996.ICU](https://github.com/996icu/996.ICU) project on Android platform\.  
+This project was created because some of the Chinese browsers banned the users from visiting the
+  repository ```996.ICU``` on Github or the site ```996.icu``` because the companies of these
+  browsers are ```996```\. I hoped to make Chinese users able to visit the repository and the site
+  again, so I started this project\.  
+I also hope that more people can join this project to help me\. Let us oppose the ```996``` working
+  schedule together!  
+[Learn more about 996 and the 996.ICU project](https://996.icu/#/en-US)  
+  
+## Included Libraries
+This project uses all of the following libraries.  
+  
+1.Blankj's library: AndroidUtilCode
+```groovy
+implementation 'com.blankj:utilcode:1.23.7'
+```
   
 ## License
 This project is licensed under the Anti-996 License with GPL v3.0 \(GNU General Public License Version 3.0\)\.  
@@ -18,5 +34,4 @@ This project is licensed under the Anti-996 License with GPL v3.0 \(GNU General 
 >     along with this program.  If not, see <https://www.gnu.org/licenses/>.  
 
 For more information, please see the [LICENSE](LICENSE-en-US) file in English or the [LICENSE](LICENSE-zh-CN) file in Chinese\.  
-[Learn more about 996 and the 996.ICU project](https://996.icu/#/en-US)  
 
