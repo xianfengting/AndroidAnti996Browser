@@ -17,5 +17,6 @@ This project is licensed under the Anti-996 License with GPL v3.0 \(GNU General 
 >     You should have received a copy of the GNU General Public License  
 >     along with this program.  If not, see <https://www.gnu.org/licenses/>.  
 
-For more information, please see the [LICENSE](LICENSE) file.
+For more information, please see the [LICENSE](LICENSE-en-US) file in English or the [LICENSE](LICENSE-zh-CN) file in Chinese\.  
+[Learn more about 996 and the 996.ICU project](https://996.icu/#/en-US)  
 
