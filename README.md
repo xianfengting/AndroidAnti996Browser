@@ -1,7 +1,7 @@
 # AndroidAnti996Browser
 A browser project for the 996.ICU project on Android platform\.  
   
-## Licenses
+## License
 This project is licensed under the Anti-996 License with GPL v3.0 \(GNU General Public License Version 3.0\)\.  
 
 >     This program is free software: you can redistribute it and/or modify  
