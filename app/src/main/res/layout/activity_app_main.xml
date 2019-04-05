@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.src_resources.anti996.browser.android.AppMainActivity">
 
+    <ProgressBar
+        android:id="@+id/pbLoadingProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:min="0"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <WebView
         android:id="@+id/wvMain"
         android:layout_width="0dp"
@@ -14,5 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/pbLoadingProgress" />
+
 </android.support.constraint.ConstraintLayout>

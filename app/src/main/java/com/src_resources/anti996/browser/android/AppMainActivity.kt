@@ -2,19 +2,54 @@ package com.src_resources.anti996.browser.android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebSettings
-import android.webkit.WebViewClient
+import android.os.Handler
+import android.os.Message
+import android.view.View
+import android.webkit.*
+import android.widget.ProgressBar
 
 
 class AppMainActivity : AppCompatActivity() {
 
+    companion object {
+        /**
+         * Handler 标识 - 更新加载进度
+         * 参数说明：
+         * arg1 - 要更新的进度。
+         */
+        const val HANDLER_FLAG_UPDATE_LOADING_PROGRESS = 0
+    }
+
+    inner class MyHandler : Handler() {
+        override fun handleMessage(msg: Message?) {
+            when (msg?.what) {
+                // Handler 标识 - 更新加载进度
+                HANDLER_FLAG_UPDATE_LOADING_PROGRESS -> {
+                    var progress = msg.arg1
+                    if (progress >= pbLoadingProgress.max) {
+                        progress = pbLoadingProgress.max
+                        pbLoadingProgress.visibility = View.INVISIBLE
+                    } else {
+                        pbLoadingProgress.visibility = View.VISIBLE
+                    }
+                    pbLoadingProgress.progress = progress
+                }
+            }
+        }
+    }
+
+    private lateinit var pbLoadingProgress: ProgressBar
     private lateinit var wvMain: WebView
+
+    private lateinit var mHandler: MyHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_main)
+
+        mHandler = MyHandler()
+
+        pbLoadingProgress = findViewById(R.id.pbLoadingProgress)
 
         wvMain = findViewById(R.id.wvMain)
         initMainWebView()
@@ -73,6 +108,20 @@ class AppMainActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 view?.loadUrl(request?.url?.toString())
                 return super.shouldOverrideUrlLoading(view, request)
+            }
+        }
+
+        wvMain.webChromeClient = object : WebChromeClient() {
+            /**
+             * 实现网页加载进度的监听。
+             * 参考：https://blog.csdn.net/u010319687/article/details/50207233
+             */
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                // 向 Handler 发送消息以更新进度。
+                val msg = mHandler.obtainMessage()
+                msg.what = HANDLER_FLAG_UPDATE_LOADING_PROGRESS
+                msg.arg1 = newProgress
+                mHandler.sendMessage(msg)
             }
         }
     }
