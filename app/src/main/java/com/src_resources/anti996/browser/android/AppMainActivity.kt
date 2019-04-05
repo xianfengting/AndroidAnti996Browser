@@ -56,6 +56,14 @@ class AppMainActivity : AppCompatActivity() {
         wvMain.loadUrl("https://996.icu")
     }
 
+    override fun onBackPressed() {
+        if (wvMain.canGoBack()) {
+            wvMain.goBack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     /** 初始化控件 wvMain 。 */
     private fun initMainWebView() {
         /*
