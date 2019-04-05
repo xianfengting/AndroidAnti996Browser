@@ -1,6 +1,4 @@
 # AndroidAnti996Browser
-- [中文版](README-zh-CN.md)  
-  
 ## Project Description
 This is a browser project for the [996.ICU](https://github.com/996icu/996.ICU) project on Android platform\.  
 This project was created because some of the Chinese browsers banned the users from visiting the
