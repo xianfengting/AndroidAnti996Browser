@@ -7,7 +7,7 @@
     tools:context="com.src_resources.anti996.browser.android.AppMainActivity">
 
     <WebView
-        android:id="@+id/mainWebView"
+        android:id="@+id/wvMain"
         android:layout_width="368dp"
         android:layout_height="495dp"
         android:layout_marginBottom="8dp"
