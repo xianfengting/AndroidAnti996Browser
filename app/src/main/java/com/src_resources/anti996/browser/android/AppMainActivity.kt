@@ -2,9 +2,10 @@ package com.src_resources.anti996.browser.android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebSettings
-
+import android.webkit.WebViewClient
 
 
 class AppMainActivity : AppCompatActivity() {
@@ -53,5 +54,26 @@ class AppMainActivity : AppCompatActivity() {
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true) //支持通过JS打开新窗口
         webSettings.setLoadsImagesAutomatically(true) //支持自动加载图片
         webSettings.setDefaultTextEncodingName("utf-8")//设置编码格式
+
+        /*
+         * 解决WebView加载URL跳转到系统浏览器的问题
+         * 引用自 https://blog.csdn.net/yy1300326388/article/details/43965493
+         */
+        /*
+        // 以下是 Java 版的代码：
+        wvMain.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+         */
+        wvMain.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                view?.loadUrl(request?.url?.toString())
+                return super.shouldOverrideUrlLoading(view, request)
+            }
+        }
     }
 }
