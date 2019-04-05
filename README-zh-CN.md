@@ -1,4 +1,8 @@
 # AndroidAnti996Browser
+
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh\_CN)
+
 ## 项目介绍
 本项目是为 [996.ICU](https://github.com/996icu/996.ICU) 项目而创建的一个 Android 平台浏览器项目。  
 这个项目的创建是因为一些中国浏览器禁止用户访问Github上的项目```996.ICU```或站点```996.icu```，因为这些浏览器的公司实行的是```996```工作制。因为我希望中国用户能够再次访问存储库和站点，所以我创建了这个项目。  
