@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="_996UrlsDescription">
+        <item>996.ICU Github 项目主页</item>
+        <item>996.icu</item>
+        <item>996.rip</item>
+    </array>
+    <array name="_996Urls">
+        <item>https://github.com/996icu/996.ICU</item>
+        <item>https://996.icu/</item>
+        <item>https://996.rip/</item>
+    </array>
+</resources>

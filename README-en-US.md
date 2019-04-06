@@ -38,3 +38,4 @@ This project is licensed under the Anti-996 License with GPL v3.0 \(GNU General 
 >     along with this program.  If not, see <https://www.gnu.org/licenses/>.  
 
 For more information, please see the [LICENSE](LICENSE-en-US) file in English or the [LICENSE](LICENSE-zh-CN) file in Chinese\.  
+

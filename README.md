@@ -17,7 +17,7 @@ I also hope that more people can join this project to help me\. Let us oppose th
 ## Included Libraries
 This project uses all of the following libraries.  
   
-1.Blankj's library: AndroidUtilCode
+1.Blankj's library: [AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)  
 ```groovy
 implementation 'com.blankj:utilcode:1.23.7'
 ```
