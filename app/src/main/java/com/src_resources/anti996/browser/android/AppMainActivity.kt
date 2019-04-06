@@ -44,6 +44,12 @@ class AppMainActivity : AppCompatActivity() {
     private lateinit var wvMain: WebView
 
     private lateinit var mHandler: MyHandler
+    private var mWebpageTitle = ""
+            set(value) {
+                field = value
+                // 设置 Activity 的标题为网页的标题。
+                title = value
+            }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -134,6 +140,14 @@ class AppMainActivity : AppCompatActivity() {
                 msg.what = HANDLER_FLAG_UPDATE_LOADING_PROGRESS
                 msg.arg1 = newProgress
                 mHandler.sendMessage(msg)
+            }
+
+            /**
+             * 获取网页标题。
+             */
+            override fun onReceivedTitle(view: WebView?, title: String?) {
+                super.onReceivedTitle(view, title)
+                mWebpageTitle = title ?: ""
             }
         }
     }
