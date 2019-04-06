@@ -37,26 +37,26 @@ class AppMainActivity : AppCompatActivity() {
                 // Handler 标识 - 更新加载进度
                 HANDLER_FLAG_UPDATE_LOADING_PROGRESS -> {
                     var progress = msg.arg1
-                    if (progress >= pbLoadingProgress.max) {
-                        progress = pbLoadingProgress.max
-                        pbLoadingProgress.visibility = View.INVISIBLE
+                    if (progress >= pb_loadingProgress.max) {
+                        progress = pb_loadingProgress.max
+                        pb_loadingProgress.visibility = View.INVISIBLE
                     } else {
-                        pbLoadingProgress.visibility = View.VISIBLE
+                        pb_loadingProgress.visibility = View.VISIBLE
                     }
-                    pbLoadingProgress.progress = progress
+                    pb_loadingProgress.progress = progress
                 }
                 // Handler 标识 - 更新网页状态 TextView
                 HANDLER_FLAG_UPDATE_WEBPAGE_STATUS_TEXT_VIEW -> {
                     val str = msg.obj as? String ?: ""
-                    tvWebpageStatus.text = str
+                    tv_webpageStatus.text = str
                 }
             }
         }
     }
 
-    private lateinit var pbLoadingProgress: ProgressBar
-    private lateinit var wvMain: WebView
-    private lateinit var tvWebpageStatus: TextView
+    private lateinit var pb_loadingProgress: ProgressBar
+    private lateinit var wv_main: WebView
+    private lateinit var tv_webpageStatus: TextView
 
     private lateinit var mHandler: MyHandler
     private var mWebpageTitle = ""
@@ -72,19 +72,19 @@ class AppMainActivity : AppCompatActivity() {
 
         mHandler = MyHandler()
 
-        pbLoadingProgress = findViewById(R.id.pbLoadingProgress)
-        // 使控件 pbLoadingProgress 位于最顶层。
-        pbLoadingProgress.bringToFront()
+        pb_loadingProgress = findViewById(R.id.pbLoadingProgress)
+        // 使控件 pb_loadingProgress 位于最顶层。
+        pb_loadingProgress.bringToFront()
 
-        wvMain = findViewById(R.id.wvMain)
+        wv_main = findViewById(R.id.wvMain)
         initMainWebView()
-//        wvMain.loadUrl("https://996.icu")
-//        wvMain.loadUrl("file:////android_asset/mainPage-zh_CN.html")
+//        wv_main.loadUrl("https://996.icu")
+//        wv_main.loadUrl("file:////android_asset/mainPage-zh_CN.html")
         showWelcomeDialog()
 
-        tvWebpageStatus = findViewById(R.id.tvWebpageStatus)
-        // 使控件 tvWebpageStatus 位于最顶层。
-        tvWebpageStatus.bringToFront()
+        tv_webpageStatus = findViewById(R.id.tvWebpageStatus)
+        // 使控件 tv_webpageStatus 位于最顶层。
+        tv_webpageStatus.bringToFront()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -96,31 +96,31 @@ class AppMainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.goBack -> {
-                if (wvMain.canGoBack()) wvMain.goBack()
+                if (wv_main.canGoBack()) wv_main.goBack()
             }
             R.id.goForward -> {
-                if (wvMain.canGoForward()) wvMain.goForward()
+                if (wv_main.canGoForward()) wv_main.goForward()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
-        if (wvMain.canGoBack()) {
-            wvMain.goBack()
+        if (wv_main.canGoBack()) {
+            wv_main.goBack()
         } else {
             super.onBackPressed()
         }
     }
 
-    /** 初始化控件 wvMain 。 */
+    /** 初始化控件 wv_main 。 */
     private fun initMainWebView() {
         /*
          * 以下代码节选自 https://www.jianshu.com/p/3c94ae673e2a 。
          */
 
         //声明WebSettings子类
-        val webSettings = wvMain.getSettings()
+        val webSettings = wv_main.getSettings()
 
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         // 注意，开启后可能会发生 XSS 攻击。
@@ -153,7 +153,7 @@ class AppMainActivity : AppCompatActivity() {
          */
         /*
         // 以下是 Java 版的代码：
-        wvMain.setWebViewClient(new WebViewClient(){
+        wv_main.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -161,14 +161,14 @@ class AppMainActivity : AppCompatActivity() {
             }
         });
          */
-        wvMain.webViewClient = object : WebViewClient() {
+        wv_main.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 view?.loadUrl(request?.url?.toString())
                 return super.shouldOverrideUrlLoading(view, request)
             }
         }
 
-        wvMain.webChromeClient = object : WebChromeClient() {
+        wv_main.webChromeClient = object : WebChromeClient() {
             /**
              * 实现网页加载进度的监听。
              * 参考：https://blog.csdn.net/u010319687/article/details/50207233
@@ -208,7 +208,7 @@ class AppMainActivity : AppCompatActivity() {
                 .setItems(R.array._996UrlsDescription) { dialog, which ->
                     val url = resources.getStringArray(R.array._996Urls)[which]
                     LogUtils.d("which=$which", "url=$url")
-                    wvMain.loadUrl(url)
+                    wv_main.loadUrl(url)
                 }
                 .create()
         welcomeDialog.show()
