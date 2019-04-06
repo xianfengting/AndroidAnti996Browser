@@ -58,6 +58,8 @@ class AppMainActivity : AppCompatActivity() {
         mHandler = MyHandler()
 
         pbLoadingProgress = findViewById(R.id.pbLoadingProgress)
+        // 使控件 pbLoadingProgress 位于最顶层。
+        pbLoadingProgress.bringToFront()
 
         wvMain = findViewById(R.id.wvMain)
         initMainWebView()
