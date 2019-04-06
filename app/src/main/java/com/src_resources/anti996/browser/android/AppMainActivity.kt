@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.support.v7.app.AlertDialog
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
+import com.blankj.utilcode.util.LogUtils
 
 
 class AppMainActivity : AppCompatActivity() {
@@ -54,7 +56,8 @@ class AppMainActivity : AppCompatActivity() {
         wvMain = findViewById(R.id.wvMain)
         initMainWebView()
 //        wvMain.loadUrl("https://996.icu")
-        wvMain.loadUrl("file:////android_asset/mainPage-zh_CN.html")
+//        wvMain.loadUrl("file:////android_asset/mainPage-zh_CN.html")
+        showWelcomeDialog()
     }
 
     override fun onBackPressed() {
@@ -133,5 +136,20 @@ class AppMainActivity : AppCompatActivity() {
                 mHandler.sendMessage(msg)
             }
         }
+    }
+
+    /** 显示欢迎对话框。 */
+    private fun showWelcomeDialog() {
+        val welcomeDialog = AlertDialog.Builder(this)
+                .setTitle(R.string.welcomeToUse)
+                // 加了下面这一行会导致选项被隐藏。
+//                .setMessage(R.string.dialog_selectAUrlToBrowse)
+                .setItems(R.array._996UrlsDescription) { dialog, which ->
+                    val url = resources.getStringArray(R.array._996Urls)[which]
+                    LogUtils.d("which=$which", "url=$url")
+                    wvMain.loadUrl(url)
+                }
+                .create()
+        welcomeDialog.show()
     }
 }
