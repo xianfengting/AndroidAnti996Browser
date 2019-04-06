@@ -53,7 +53,8 @@ class AppMainActivity : AppCompatActivity() {
 
         wvMain = findViewById(R.id.wvMain)
         initMainWebView()
-        wvMain.loadUrl("https://996.icu")
+//        wvMain.loadUrl("https://996.icu")
+        wvMain.loadUrl("file:////android_asset/mainPage-zh_CN.html")
     }
 
     override fun onBackPressed() {
