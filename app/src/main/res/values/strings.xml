@@ -6,4 +6,7 @@
     <string name="loadingFinished">加载完成</string>
 
     <string name="dialog_selectAUrlToBrowse">请选择您要浏览的页面</string>
+
+    <string name="menuItem_goBack">后退</string>
+    <string name="menuItem_goForward">前进</string>
 </resources>

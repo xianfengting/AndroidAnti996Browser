@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.support.v7.app.AlertDialog
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
@@ -83,6 +85,24 @@ class AppMainActivity : AppCompatActivity() {
         tvWebpageStatus = findViewById(R.id.tvWebpageStatus)
         // 使控件 tvWebpageStatus 位于最顶层。
         tvWebpageStatus.bringToFront()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // 生成菜单。
+        menuInflater.inflate(R.menu.activity_app_main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.goBack -> {
+                if (wvMain.canGoBack()) wvMain.goBack()
+            }
+            R.id.goForward -> {
+                if (wvMain.canGoForward()) wvMain.goForward()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {

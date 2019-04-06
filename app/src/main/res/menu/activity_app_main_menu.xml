@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/goBack"
+        android:title="@string/menuItem_goBack"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/goForward"
+        android:title="@string/menuItem_goForward"
+        app:showAsAction="ifRoom" />
+</menu>
