@@ -2,5 +2,8 @@
     <string name="app_name">AndroidAnti996Browser</string>
 
     <string name="welcomeToUse">欢迎使用</string>
+    <string name="loading">加载中</string>
+    <string name="loadingFinished">加载完成</string>
+
     <string name="dialog_selectAUrlToBrowse">请选择您要浏览的页面</string>
 </resources>

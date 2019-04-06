@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.blankj.utilcode.util.LogUtils
 
 
@@ -20,6 +21,12 @@ class AppMainActivity : AppCompatActivity() {
          * arg1 - 要更新的进度。
          */
         const val HANDLER_FLAG_UPDATE_LOADING_PROGRESS = 0
+        /**
+         * Handler 标识 - 更新网页状态 TextView
+         * 参数说明：
+         * obj - 要更新的 String 。
+         */
+        const val HANDLER_FLAG_UPDATE_WEBPAGE_STATUS_TEXT_VIEW = 1
     }
 
     inner class MyHandler : Handler() {
@@ -36,12 +43,18 @@ class AppMainActivity : AppCompatActivity() {
                     }
                     pbLoadingProgress.progress = progress
                 }
+                // Handler 标识 - 更新网页状态 TextView
+                HANDLER_FLAG_UPDATE_WEBPAGE_STATUS_TEXT_VIEW -> {
+                    val str = msg.obj as? String ?: ""
+                    tvWebpageStatus.text = str
+                }
             }
         }
     }
 
     private lateinit var pbLoadingProgress: ProgressBar
     private lateinit var wvMain: WebView
+    private lateinit var tvWebpageStatus: TextView
 
     private lateinit var mHandler: MyHandler
     private var mWebpageTitle = ""
@@ -66,6 +79,10 @@ class AppMainActivity : AppCompatActivity() {
 //        wvMain.loadUrl("https://996.icu")
 //        wvMain.loadUrl("file:////android_asset/mainPage-zh_CN.html")
         showWelcomeDialog()
+
+        tvWebpageStatus = findViewById(R.id.tvWebpageStatus)
+        // 使控件 tvWebpageStatus 位于最顶层。
+        tvWebpageStatus.bringToFront()
     }
 
     override fun onBackPressed() {
@@ -138,9 +155,17 @@ class AppMainActivity : AppCompatActivity() {
              */
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 // 向 Handler 发送消息以更新进度。
-                val msg = mHandler.obtainMessage()
+                var msg = mHandler.obtainMessage()
                 msg.what = HANDLER_FLAG_UPDATE_LOADING_PROGRESS
                 msg.arg1 = newProgress
+                mHandler.sendMessage(msg)
+                msg = mHandler.obtainMessage()
+                msg.what = HANDLER_FLAG_UPDATE_WEBPAGE_STATUS_TEXT_VIEW
+                msg.obj = if (newProgress < 100) {
+                    "${resources.getString(R.string.loading)}... $newProgress%"
+                } else {
+                    resources.getString(R.string.loadingFinished)
+                }
                 mHandler.sendMessage(msg)
             }
 
